@@ -11,8 +11,12 @@ function App() {
   const [accesToken,setAccessToken] = useState('')
   const [address,setAddres] = useState()
   const [disabled,setDisabled] = useState(false)
-  const [keyWord,setKeyWord] = useState('');
+  const [keyWords,setKeyWord] = useState('');
   const [searchResults, setSearchResults] = useState(null);
+  const [searchTxt , setSearchTxt] = useState('');
+  const searchValue = keyWords.length;
+  const [productValueError,setProductValueError] = useState('');
+  const [productvalue, setProductValue] = useState()
   const handleClick = async (e) => {
     try {
         e.preventDefault() // prevent make request
@@ -77,44 +81,41 @@ function App() {
       setAccessToken(t)
     }
 
-    // if(accesToken){
-    //   getAddress()
-    // }
   },[accesToken])
 
 
-  useEffect(() => {
 
-    // if(email && password){
-    //   if(password.length > 10){
-    //     setDisabled(false)
-    //   }else{
-    //     setDisabled(true)
-    //   }
 
-    // }else{
-    //   setDisabled(true)
-    // }
+  const handleSearch = async (e) => {
 
-  },[email,password])
-
-  const handleSearch = async () => {
     try {
-      const response = await axios.post(
-        `
-        http://api2.mymarket.ge/api/ka/products=${keyWord}`,
+      e.preventDefault() 
+      setSearchTxt('')
+
+      if(searchValue <= 5){
+        setSearchTxt('Product must contain 5 or more symbol')
+        return
+      }
+      const responses = await axios.post(
+        `https://api2.mymarket.ge/api/ka/products`,
         {
-          headers: {
-            Authorization: accesToken,
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
-            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-         },
+           Keyword: keyWords,
+           Limit:12
+           
+        
         }
       );
-      setSearchResults(response.data.Prs);
-    } catch (error) {
-      console.error(error);
+      
+      setSearchResults(responses.data?.data.Prs);
+      const total = responses.data.data.totalCount
+      setProductValue(total)
+ 
+      if(total === 0){
+       setProductValueError("სასურველი პროდუქტი ვერ მოიძებნა")
+     }
+
+    } catch (searchTxt) {
+      console.error('ERROR');
     }
   };
 
@@ -135,21 +136,38 @@ function App() {
               className='searchinput'
                 type="text"
                 placeholder="   Search"
-                value={keyWord}
+                value={keyWords}
                 onChange={(e) => setKeyWord(e.target.value)}
                 />
                 <br></br>
-                <button onClick={handleSearch} className='searchbtn'> <img src ={searchL}  classname='searchL' alt='searchlogo'/></button>
+                <button onClick={handleSearch} className='searchbtn'> <img src ={searchL}  className='searchL' alt='searchlogo'/></button>
           </div>
           <br></br>
-          {searchResults &&
-            searchResults.map((result) => (
-              <div  className='result'>
-                <h2>{searchResults[0].lang_data.title}</h2>
-                <p>{searchResults[0].lang_data.descr}</p>
-                {/* <img src={result.image} alt={result.name} /> */}
+          <p>{searchTxt}</p>
+          <p>{productValueError}</p>
+          <br></br>
+                  
+          <div>
+          {
+            searchResults?.map((result) => {
+
+              return(
+
+                
+                <div className='result' key={result.product_id}>
+                <h2>{result.title}ashdasld</h2>
+                <p>{result.price}</p>
+                <img className='productImg' src={result.photos[0].thumbs} alt='product image'/>
+                <br/>
+                      <p className='error'>{error}</p>
+                
               </div>
-  ))}
+                )}
+                
+                )
+            
+          }
+</div>
           
         </>
         :
@@ -168,7 +186,9 @@ function App() {
             </div>
         </form>
       }
+          
       </>
+
   );
 
 

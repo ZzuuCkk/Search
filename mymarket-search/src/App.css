@@ -109,3 +109,9 @@ input:focus {
   height: 100px;
   background-color: rebeccapurple;
 }
+
+
+.result h2 {
+  font-size: 18px;
+  color: red;
+}
