@@ -100,7 +100,7 @@ function App() {
         `https://api2.mymarket.ge/api/ka/products`,
         {
            Keyword: keyWords,
-           Limit:24,
+           Limit:16,
            Page:4
            
         
