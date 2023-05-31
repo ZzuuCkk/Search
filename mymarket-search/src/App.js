@@ -100,7 +100,8 @@ function App() {
         `https://api2.mymarket.ge/api/ka/products`,
         {
            Keyword: keyWords,
-           Limit:12
+           Limit:24,
+           Page:4
            
         
         }
@@ -147,27 +148,34 @@ function App() {
           <p>{productValueError}</p>
           <br></br>
                   
-          <div>
-          {
-            searchResults?.map((result) => {
+          <div className='result'>
+                {
+                  searchResults?.map((result) => {
 
-              return(
+                    return(
 
-                
-                <div className='result' key={result.product_id}>
-                <h2>{result.title}ashdasld</h2>
-                <p>{result.price}</p>
-                <img className='productImg' src={result.photos[0].thumbs} alt='product image'/>
-                <br/>
-                      <p className='error'>{error}</p>
-                
-              </div>
-                )}
-                
-                )
-            
-          }
-</div>
+                     
+                        <div className='card'>
+                          <div className='cardTxt'>
+                            <h2>{result.title}ashdasld</h2>
+                            {/* <p className='price'>{result.lang_data.stripped_descr}</p> */}
+                            <p className='price'>ფასი : {result.price}</p>
+                          </div>
+                            <img className='productImg' src={result.photos[0].thumbs} className='cardImg' alt='product image' />
+                            
+                                
+                            
+                        </div>
+                         
+                      )}
+                      
+                      )
+                  
+                }
+                <>
+                         <p className='error'>{error}</p>
+                      </>
+          </div>
           
         </>
         :

@@ -105,13 +105,57 @@ input:focus {
   outline-color: gold;
 }
 .result{
-  width: 100px;
-  height: 100px;
-  background-color: rebeccapurple;
+  width: 100%;
+  margin: 5px auto 5px 30px;
+  display: grid;
+  grid-template-columns:  1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 9px;
+  background-color: rgb(235, 230, 230);
+  padding: 30px;
+
 }
 
+.card{
+  max-width: 600px;
+  width: 100%;
+  max-height: 400px;
+  height: 100%;
+  border: 1px solid rgb(55, 44, 44);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+  background-color: white;
+  box-shadow: 3px 3px 3px black; 
+}
 
-.result h2 {
+.cardImg{
+  max-width: 300px;
+  width: 100%;
+  max-height: 200px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.cardTxt{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 3px;
+}
+.cardTxt h2{
   font-size: 18px;
+  text-overflow: hidden;
+}
+.price{
+  font-size: 16px;
   color: red;
+  font-weight: bold;
+  align-self: end;
+  padding-right: 5px;
 }
