@@ -110,7 +110,7 @@ function App() {
       setSearchResults(responses.data?.data.Prs);
       const total = responses.data.data.totalCount
       setProductValue(total)
- 
+      setProductValueError('');
       if(total === 0){
        setProductValueError("სასურველი პროდუქტი ვერ მოიძებნა")
      }
@@ -131,52 +131,58 @@ function App() {
             <button onClick={() => getAddress()}>get address</button> */}
             <button onClick={() => logout()} className='logout'>logout</button>
         </div>
-          <div className='search'>
 
-              <input
-              className='searchinput'
-                type="text"
-                placeholder="   Search"
-                value={keyWords}
-                onChange={(e) => setKeyWord(e.target.value)}
-                />
-                <br></br>
-                <button onClick={handleSearch} className='searchbtn'> <img src ={searchL}  className='searchL' alt='searchlogo'/></button>
-          </div>
-          <br></br>
-          <p>{searchTxt}</p>
-          <p>{productValueError}</p>
-          <br></br>
-                  
-          <div className='result'>
-                {
-                  searchResults?.map((result) => {
+        <div className='bg'>
 
-                    return(
+       
+            <div className='search'>
 
-                     
-                        <div className='card'>
-                          <div className='cardTxt'>
-                            <h2>{result.title}ashdasld</h2>
-                            {/* <p className='price'>{result.lang_data.stripped_descr}</p> */}
-                            <p className='price'>ფასი : {result.price}</p>
-                          </div>
-                            <img className='productImg' src={result.photos[0].thumbs} className='cardImg' alt='product image' />
-                            
-                                
-                            
-                        </div>
-                         
-                      )}
+                <input
+                className='searchinput'
+                  type="text"
+                  placeholder="   Search"
+                  value={keyWords}
+                  onChange={(e) => setKeyWord(e.target.value)}
+                  />
+                  <br></br>
+                  <button onClick={handleSearch} className='searchbtn'> <img src ={searchL}  className='searchL' alt='searchlogo'/></button>
+            </div>
+            <br></br>
+            <div className='err'>
+              <p className='searcheRR'>{searchTxt}</p>
+              <p className='productErr' >{productValueError}</p>
+            </div>
+            <br></br>
+                    
+            <div className='result'>
+                  {
+                    searchResults?.map((result) => {
+
+                      return(
+
                       
-                      )
-                  
-                }
-                <>
-                         <p className='error'>{error}</p>
-                      </>
-          </div>
-          
+                          <div className='card'>
+                            <div className='cardTxt'>
+                              <h2>{result.title}ashdasld</h2>
+                              <p className='descr'>{result.lang_data.stripped_descr}</p>
+                              <p className='price'>ფასი : {result.price}</p>
+                            </div>
+                              <img className='productImg' src={result.photos[0].thumbs} className='cardImg' alt='product image' />
+                              
+                                  
+                              
+                          </div>
+                          
+                        )}
+                        
+                        )
+                    
+                  }
+                  <>
+                          <p className='error'>{error}</p>
+                        </>
+            </div>
+          </div>  
         </>
         :
         <form onSubmit={handleClick}>

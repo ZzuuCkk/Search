@@ -32,12 +32,15 @@ input:focus {
   box-shadow: 5px 5px 5px  gray;
 
 }
+.productErr,
+.searcheRR,
 .error{
+  text-shadow: 0 0 0.1em hsl(10,100%,50%), 0 0 0.5em hsl(10,100%,50%), 0 0 1em hsl(10,100%,50%);
   color: red;
-  font-size: 19px;
-  font-style: italic;
-  text-shadow: 2px 1px  rgb(55, 45, 45);
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif  ;
 }
+
 
 .user{
   max-width: 400px;
@@ -104,58 +107,80 @@ input:focus {
 .searchinput:focus{
   outline-color: gold;
 }
+.err{
+  width: 400px;
+  margin: auto;
+}
+.bg{
+  background-color: rgb(235, 230, 230);
+}
 .result{
   width: 100%;
-  margin: 5px auto 5px 30px;
+  margin: auto ;
   display: grid;
   grid-template-columns:  1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
-  gap: 9px;
-  background-color: rgb(235, 230, 230);
+  gap: 20px;
+
   padding: 30px;
 
 }
 
 .card{
-  max-width: 600px;
+  max-width: 400px;
   width: 100%;
-  max-height: 500px;
+  min-height: 200px;
   height: 100%;
-  border: 1px solid rgb(55, 44, 44);
   border-radius: 20px;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column-reverse;
   justify-content: start;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   background-color: white;
   box-shadow: 3px 3px 3px black; 
 }
-
+.card:hover{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
 .cardImg{
-  max-width: 300px;
+  max-width: 400px;
   width: 100%;
-  max-height: 200px;
+  max-height: 300px;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 20px;
+  margin-top: 8px;
 }
 
 .cardTxt{
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 5px;
+  align-items: center;
+  /* width: 300px; */
+  gap: 25px;
   padding: 3px;
 }
 .cardTxt h2{
   font-size: 18px;
+  text-align: center;
   text-overflow: hidden;
+  padding: 3px;
 }
 .price{
   font-size: 16px;
   color: red;
   font-weight: bold;
-  align-self: end;
-  padding-right: 5px;
+}
+
+.descr{
+  width: 300px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  max-height: 3.6em;
+  line-height: 1.8em;
+  text-align: center;
 }
