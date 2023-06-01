@@ -43,7 +43,7 @@ function App() {
         setAccessToken(token)
         localStorage.setItem('token',token)
         localStorage.setItem('user',JSON.stringify(userInfo))
-    }catch (e){
+      }catch (e){
         setError(e.response.data.message.error_data._error[0])
     } 
   }
@@ -167,7 +167,7 @@ function App() {
                               <p className='descr'>{result.lang_data.stripped_descr}</p>
                               <p className='price'>ფასი : {result.price}</p>
                             </div>
-                              <img className='productImg' src={result.photos[0].thumbs} className='cardImg' alt='product image' />
+                              <img className='productImg' src={result.photos[0].thumbs} alt='product image' />
                               
                                   
                               
@@ -189,15 +189,15 @@ function App() {
             <br/>
             <div className='auth'>
 
-            <h1 className='title'>ავტორიზაცია</h1>
-            <input type="text" placeholder="   ელფოსტა" value={email} onChange={(e) => setEmail(e.target.value)}/>
-            <br></br>
-            <input type="password" placeholder="   პაროლი" value={password} onChange={(e) => setPassword(e.target.value)}/>
-            <br></br>
-            <button disabled={disabled} type="submit" className='btn'>Submit</button>
-            <br/>
-            <p className='error'>{error}</p>
-            </div>
+              <h1 className='title'>ავტორიზაცია</h1>
+              <input type="text" placeholder="   ელფოსტა" value={email} onChange={(e) => setEmail(e.target.value)}/>
+              <br></br>
+              <input type="password" placeholder="   პაროლი" value={password} onChange={(e) => setPassword(e.target.value)}/>
+              <br></br>
+              <button disabled={disabled} type="submit" className='btn'>Submit</button>
+              <br/>
+              <p className='error'>{error}</p>
+              </div>
         </form>
       }
           

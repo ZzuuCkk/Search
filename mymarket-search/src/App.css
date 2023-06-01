@@ -7,15 +7,25 @@
 .auth{
   max-width: 500px;
   width: 100%;
-  margin: 50px;
-  padding: 5px;
+  margin:20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 5px 20px 3px black ;
+  border-radius: 50px;
 }
 
+.auth:hover{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
 input{
   margin-top: 15px;
   width: 400px;
   height: 50px;
   border: 1px solid gray;
+  border-radius: 10px;
+  padding-left: 15px;
   
 }
 input:focus {
@@ -30,11 +40,14 @@ input:focus {
   margin:15px  auto;
   border: none;
   box-shadow: 5px 5px 5px  gray;
-
+  cursor: pointer;
 }
+
+
 .productErr,
 .searcheRR,
 .error{
+
   text-shadow: 0 0 0.1em hsl(10,100%,50%), 0 0 0.5em hsl(10,100%,50%), 0 0 1em hsl(10,100%,50%);
   color: red;
   font-size: 18px;
